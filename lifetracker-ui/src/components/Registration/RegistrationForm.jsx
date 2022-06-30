@@ -77,13 +77,12 @@ export default function RegistrationForm({setAppState}) {
                 setErrors((e) => ({ ...e, form: "Something went wrong with the registration, please try again." }))
                 setIsLoading(false)
             }
-
-            } catch (err) {
-                console.log(err)
-                const message = err?.response?.data?.error?.message
-                setErrors((e) => ({ ...e, form: message ? String(message) : String(err) }))
-                setIsLoading(false)
-            }
+        } catch (err) {
+            console.log(err)
+            const message = err?.response?.data?.error?.message
+            setErrors((e) => ({ ...e, form: message ? String(message) : String(err) }))
+            setIsLoading(false)
+        }
 
     }
     
