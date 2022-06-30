@@ -11,9 +11,29 @@ import AccessForbidden from "../AccessForbidden/AccessForbidden"
 import NotFound from "../NotFound/NotFound"
 
 export default function App() {
+
   return (
     <div className="app">
-      <React.Fragment>{/* YOUR CODE HERE! */}</React.Fragment>
+      <React.Fragment>
+        <BrowserRouter>
+          <Navbar/>
+
+          <Routes>
+            <Route path = "/" element = {<LandingPage/>} />
+
+            <Route path = "/register" element = {<RegistrationPage/>} />
+            <Route path = "/login" element = {<LoginPage/>} />
+            
+            {/* access granted only if user is logged in, otherwise render AccessForbidden */}
+            <Route path = "/activity" element = {<ActivityPage/>}/>
+            <Route path = "/nutrition/*" element = {<NutritionPage/>}/>
+            {/* ~~~~~~ */}
+
+            <Route path = "*" element = {<NotFound/>}/>
+          </Routes>
+
+        </BrowserRouter>
+      </React.Fragment>
     </div>
   )
 }
