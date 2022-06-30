@@ -8,3 +8,12 @@ export default function App() {
     </div>
   )
 }
+
+export default function AppContainer(App) {
+  // for later
+
+  return (
+    App
+  )
+
+}
