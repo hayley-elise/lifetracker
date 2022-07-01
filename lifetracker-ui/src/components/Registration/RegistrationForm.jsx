@@ -173,7 +173,7 @@ export default function RegistrationForm({setAppState}) {
             <br/>
 
             {/* Sign-up Button */}
-            <button className = "submit-registration" onClick = {signupUser}> Create Account! </button>
+            <Link to = "/activity"> <button className = "submit-registration" onClick = {signupUser}> Create Account! </button> </Link>
 
             <br/>
 

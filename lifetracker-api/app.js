@@ -2,7 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const morgan = require("morgan")
 const {BadRequestError, NotFoundError} = require("./utils/errors")
-// const authRoutes = require("./routes/auth")
+const authRoutes = require("./routes/auth")
 
 const app = express()
 
@@ -11,7 +11,7 @@ app.use(cors())
 app.use(express.json())
 app.use(morgan("tiny"))
 
-// app.use("/auth", authRoutes)
+app.use("/auth", authRoutes)
 
 app.get("/", (req, res, next) => {
     res.status(200).json()
