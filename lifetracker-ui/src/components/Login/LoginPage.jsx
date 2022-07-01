@@ -1,5 +1,5 @@
 import * as React from "react"
-import LoginForm from "./Login/LoginForm"
+import LoginForm from "../Login/LoginForm"
 
 export default function LoginPage() {
 

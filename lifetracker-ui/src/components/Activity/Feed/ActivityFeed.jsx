@@ -1,5 +1,5 @@
 import * as React from "react"
-import "./ActivityFeed.css"
+import "./Feed.css"
 import SummaryStat from "./SummaryStat"
 
 export default function ActivityFeed({totalCaloriesPerDay = [], avgCaloriesPerCategory = []}) {

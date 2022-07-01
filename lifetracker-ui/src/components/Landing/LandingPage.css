@@ -1,0 +1,13 @@
+.landing-page {
+    max-width: 100vw;
+    height: calc(100% - var(--navbar-height));
+    min-height: calc(100vh - var(--navbar-height));
+    overflow-x: hidden;
+    background: var(--dark-background);
+}
+
+.landing-page, .hero {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}

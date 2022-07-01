@@ -1,6 +1,6 @@
 import * as React from "react"
 import ActivityFeed from "./Feed/ActivityFeed"
-import ActivityContextProvider from "../contexts/activity.jsx"
+import ActivityContextProvider from "../../../contexts/activity"
 import Loading from "../Loading/Loading"
 
 export default function ActivityPage() {
