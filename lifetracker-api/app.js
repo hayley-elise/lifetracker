@@ -1,14 +1,14 @@
-const express = require("express")
-const cors = require("cors")
-const morgan = require("morgan")
-const {BadRequest, NotFoundError} = require("./utils/errors")
-const authRoutes = require("./routes/auth")
+import express, {json} from "express"
+import cors from "cors"
+import morgan from "morgan"
+import {BadRequest, NotFoundError} from "./utils/errors"
+import authRoutes from "./routes/auth"
 
 const app = express()
 
 
 app.use(cors())
-app.use(express.json())
+app.use(json())
 app.use(morgan("tiny"))
 
 app.use("/auth", authRoutes)
@@ -17,7 +17,7 @@ app.use((req, res, next) => {
     return next(new NotFoundError())
 })
 
-app.use(function (err, req, res, next) {
+app.use((err, req, res, next) => {
     const status = err.status || 500
     const message = err.message
 
@@ -26,4 +26,4 @@ app.use(function (err, req, res, next) {
     })
 })
 
-module.exports = app
+export default app

@@ -1,6 +1,6 @@
-const {Client} =  require("pg")
-const {getDatabaseUri} = require("./config")
-require("colors")
+import {Client} from "pg"
+import {getDatabaseUri} from "./config"
+import "colors"
 
 const db = new Client({connectionString: getDatabaseUri()})
 
@@ -12,4 +12,4 @@ db.connect((err) => {
     }
 })
 
-module.exports = db
+export default db
