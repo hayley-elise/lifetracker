@@ -1,8 +1,8 @@
-import express, {json} from "express"
-import cors from "cors"
-import morgan from "morgan"
-import {BadRequest, NotFoundError} from "./utils/errors"
-import authRoutes from "./routes/auth"
+const express = require("express")
+const cors = require("cors")
+const morgan = require("morgan")
+const {BadRequestError, NotFoundError} = require("./utils/errors")
+const authRoutes = require("./routes/auth")
 
 const app = express()
 
@@ -26,4 +26,4 @@ app.use((err, req, res, next) => {
     })
 })
 
-export default app
+module.exports = app
