@@ -1,5 +1,5 @@
 require("dotenv").config()
-import "colors"
+require("colors")
 
 const PORT = process.env.Port ? Number(process.env.PORT) : 3001
 const SECRET_KEY = "ilovefoodsoverymuch"
@@ -25,7 +25,7 @@ console.log("Database URI: ".blue, getDatabaseUri())
 console.log("~~~~~~~~~~~~~~~~~~~~~~~")
 
 
-export default {
+module.exports = {
     PORT,
     BCRYPT_WORK_FACTOR,
     SECRET_KEY,
