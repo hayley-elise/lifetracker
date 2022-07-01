@@ -6,9 +6,9 @@ export default function LandingPage() {
     
     return (
         <div className = "landing-page">
-            <div className = "hero"> 
+            <div className = "hero">
+                <p className = "cta"> Lifetracker </p> 
                 <img className = "hero-img" src = {smartwatch}/>
-                <p className = "cta"> Helping you take back control of your life </p>
             </div>
         </div>
       )
