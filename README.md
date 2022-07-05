@@ -38,7 +38,7 @@ Implement any of the following features to improve the application:
 
 ### Walkthrough Video
 
-`https://www.loom.com/share/fcdb0c0de08e4c33975d65ea78cfad20`
+https://www.loom.com/share/fcdb0c0de08e4c33975d65ea78cfad20
 
 ### Reflection
 
