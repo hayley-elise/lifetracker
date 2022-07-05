@@ -6,8 +6,8 @@ const security = require("../middleware/security")
 
 router.post("/login", async (req, res, next) => {
     try {
-        const token = createUserJwt(user)
         const user = await User.login(req.body)
+        const token = createUserJwt(user)
         return res.status(200).json({user, token})
     } catch (err) {
         next(err)
