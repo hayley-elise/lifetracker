@@ -9,29 +9,22 @@ export default function LoginForm() {
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState({})
     const [form, setForm] = useState({
-        email: "", 
+        username: "",
         password: "",
     })
 
+
     // error handling
     const handleOnInputChange = (event) => {
-        if (event.target.name === "email") {
-            if (event.target.value.indexOf("@") === -1) {
-                setErrors((e) => ({ ...e, email: "Please enter a valid email." }))
-            } else {
-                setErrors((e) => ({ ...e, email: null }))
-            }
-        }
-
         setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
-
     }
+
 
     // submit login
     const loginUser = async (e) => {
         e.preventDefault()
         setIsLoading(true)
-        setErrors((e) => ({ ...e, form: null }))
+        setErrors((e) => ({...e, form: null}))
 
         try {
             const res = await axios.post(`http://localhost:3001/auth/login`, form)
@@ -41,12 +34,12 @@ export default function LoginForm() {
                 setIsLoading(false)
                 navigate("/activity")
             } else {
-                setErrors((e) => ({ ...e, form: "Invalid username or password." }))
+                setErrors((e) => ({...e, form: "Invalid username/password."}))
                 setIsLoading(false)
             }
         } catch (err) {
             const message = err?.response?.data?.error?.message
-            setErrors((e) => ({ ...e, form: message ? String(message) : String(err) }))
+            setErrors((e) => ({...e, form: message ? String(message) : String(err)}))
             setIsLoading(false)
         }
 
@@ -56,17 +49,17 @@ export default function LoginForm() {
     return (
         <div className = "login-form">
 
-            {/* Email */}
-            <label htmlFor = "email"> Email </label>
+            {/* Username */}
+            <label htmlFor = "username"> Username </label>
             <input 
                 className = "form-input" 
-                name = "email" 
-                type = "email" 
-                value = {form.email} 
+                name = "username" 
+                type = "text" 
+                value = {form.username} 
                 onChange = {handleOnInputChange}
-                placeholder = "michaelJackson@hehe.com"
+                placeholder = "KingOfPop69"
             /> 
-            {errors.email && <span className = "error"> {errors.email} </span>}
+            {errors.username && <span className = "error"> {errors.username} </span>}
 
             <br/>
 
@@ -84,7 +77,7 @@ export default function LoginForm() {
             <br/>
 
             {/* Sign-up Button */}
-            <button className = "submit-login" onClick = {loginUser}> Log In </button>
+            <button className = "submit-login" onClick = {loginUser}> Log In! </button>
 
             <br/>
 

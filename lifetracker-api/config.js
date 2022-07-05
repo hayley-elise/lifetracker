@@ -18,11 +18,9 @@ function getDatabaseUri() {
     return process.env.DATABASE_URL || `postgresql://${dbUser}:${dbPass}@${dbHost}:${dbPort}/${dbName}`
 }
 
-
-console.log("App Config".red)
-console.log("PORT: ".blue, PORT)
-console.log("Database URI: ".blue, getDatabaseUri())
+console.log(" ")
 console.log("~~~~~~~~~~~~~~~~~~~~~~~")
+console.log("Database URI: ".cyan.bold, getDatabaseUri().magenta.underline)
 
 
 module.exports = {

@@ -1,13 +1,13 @@
 const bcrypt = require("bcrypt")
-const userPassword = "password"
-const confirmUserPassword = "passwordConfirm"
+const password = "password"
+const confirmedPassword = "password2"
 
 bcrypt.hash(userPassword, 6, (err, hashedPassword) => {
-    console.log(`User password is: ${userPassword}`)
-    console.log(`Hashed version: ${hashedPassword}`)
+    console.log(`User password is: ${password}`)
+    console.log(`Hashed password: ${hashedPassword}`)
 })
 
-bcrypt.hash(confirmUserPassword, 6, (err, hashedPassword) => {
-    console.log(`User password is: ${confirmUserPassword}`)
-    console.log(`Hashed version: ${hashedPassword}`)
+bcrypt.hash(confirmedPassword, 6, (err, hashedPassword) => {
+    console.log(`User password is: ${confirmedPassword}`)
+    console.log(`Hashed password: ${hashedPassword}`)
 })
