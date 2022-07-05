@@ -49,17 +49,17 @@ export default function LoginForm() {
     return (
         <div className = "login-form">
 
-            {/* Username */}
-            <label htmlFor = "username"> Username </label>
+            {/* Email */}
+            <label htmlFor = "email"> Email </label>
             <input 
                 className = "form-input" 
-                name = "username" 
-                type = "text" 
-                value = {form.username} 
+                name = "email" 
+                type = "email" 
+                value = {form.email} 
                 onChange = {handleOnInputChange}
-                placeholder = "KingOfPop69"
+                placeholder = "MJ@hehe.com"
             /> 
-            {errors.username && <span className = "error"> {errors.username} </span>}
+            {errors.email && <span className = "error"> {errors.email} </span>}
 
             <br/>
 

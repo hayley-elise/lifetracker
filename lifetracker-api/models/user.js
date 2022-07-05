@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt")
 
 class User {
 
-    // allows values to be seen in console 
+    // returns values to be seen 
     static async makePublicUser(user) {
         return {
             id: user.id,
@@ -22,19 +22,19 @@ class User {
     static async login(credentials) {
 
         // required to submit these fields
-        const requiredFields = ["username", "password"]
+        const requiredFields = ["email", "password"]
 
     // ~~~~~~~~~~~
-        // throws error if field is missing or empty
-        requiredFields.forEach(field => {
+        // throws error if field is missing
+        requiredFields.forEach((field) => {
             if (!credentials.hasOwnProperty(field)) {
                 throw new BadRequestError(`Field required: ${field}`)
             }
         })
 
     // ~~~~~~~~~~~
-        // finds user's username
-        const user = await User.fetchUserbyUsername(credentials.username)
+        // finds user's email
+        const user = await User.fetchUserbyEmail(credentials.email)
         if (user) {
             // compares submitted password w/ db password
             const isValid = await bcrypt.compare(credentials.password, user.password)
@@ -44,8 +44,8 @@ class User {
             }
         }
 
-        // throws error if username not found
-        throw new UnauthorizedError("Invalid username/password; please try again.")
+        // throws error if user not found
+        throw new UnauthorizedError("User not found; please try again.")
     }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -57,8 +57,8 @@ class User {
         const requiredFields = ["username", "firstName", "lastName", "email", "password"]
 
     // ~~~~~~~~~~~
-        // throws error if field is missing or empty
-        requiredFields.forEach(field => {
+        // throws error if field is missing
+        requiredFields.forEach((field) => {
             if (!credentials.hasOwnProperty(field)) {
                 throw new BadRequestError(`Field required: ${field}`)
             }
@@ -101,7 +101,7 @@ class User {
             VALUES ($1, $2, $3, $4, $5)
 
             RETURNING 
-                username, first_name, last_name, email; 
+                id, username, first_name, last_name, email; 
         ` , [credentials.username, credentials.firstName, credentials.lastName, lowercasedEmail, hashedPassword])
 
     // ~~~~~~~~~~~
@@ -115,7 +115,7 @@ class User {
     // fetch user by email
     static async fetchUserbyEmail(email) {
 
-        // throws error if parameter is not an email
+        // throws error if field is empty
         if (!email) {
             throw new BadRequestError("No email provided.")
         }
@@ -158,4 +158,5 @@ class User {
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 module.exports = User
