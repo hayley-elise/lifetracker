@@ -9,6 +9,8 @@ db.connect((err) => {
         console.error("Connection Error...".red.bold, err.stack)
     } else {
         console.log("Successfully connected to the Postgres database!".blue.bold)
+        console.log("~~~~~~~~~~~~~~~~~~~~~~~")
+        console.log(" ")
     }
 })
 
