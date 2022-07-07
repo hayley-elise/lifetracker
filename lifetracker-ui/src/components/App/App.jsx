@@ -1,6 +1,6 @@
-import * as React from "react"
 import "./App.css"
-import {BrowserRouter, Routes, Route} from "react-router-dom"
+import * as React from "react"
+import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom"
 import Navbar from "../Navbar/Navbar"
 import LandingPage from "../Landing/LandingPage"
 import LoginPage from "../Login/LoginPage"
@@ -9,7 +9,8 @@ import ActivityPage from "../Activity/ActivityPage"
 import NutritionPage from "../Nutrition/NutritionPage"
 import AccessForbidden from "../AccessForbidden/AccessForbidden"
 import NotFound from "../NotFound/NotFound"
-import {AuthContextProvider} from "../../../contexts/auth"
+import {AuthContextProvider, useAuthContext} from "../../../contexts/auth"
+
 
 export default function AppContainer() {
   return (
@@ -19,7 +20,11 @@ export default function AppContainer() {
   )
 }
 
+
 function App() {
+  const loggedIn = useAuthContext()
+
+  
   return (
     <div className = "app">
       <React.Fragment>
@@ -28,10 +33,10 @@ function App() {
             <Navbar/>
             <Routes>
               <Route path = "/" element = {<LandingPage/>}/>
-              <Route path = "/register" element = {<RegistrationPage/>}/>
-              <Route path = "/login" element = {<LoginPage/>}/>
-              <Route path = "/activity" element = {<ActivityPage/>}/>
-              <Route path = "/nutrition/*" element = {<NutritionPage/>}/>
+              <Route path = "/register" element = {loggedIn ? <Navigate to = "/activity"/> : <RegistrationPage/>}/>
+              <Route path = "/login" element = {loggedIn ? <Navigate to = "/activity"/> : <LoginPage/>}/>
+              <Route path = "/activity" element = {!loggedIn ? <AccessForbidden/> : <ActivityPage/>}/>
+              <Route path = "/nutrition/*" element = {!loggedIn ? <AccessForbidden/> : <NutritionPage/>}/>
               <Route path = "*" element = {<NotFound/>}/>
             </Routes>
 

@@ -1,14 +1,11 @@
 import {createContext, useState, useContext, useEffect} from "react"
 import apiClient from "../services/apiClient"
+import {Navigate} from "react-router-dom"
+
 
 const AuthContext = createContext(null)
 
 export const AuthContextProvider = ({children}) => {
-    const [user, setUser] = useState()
-    const [initialized, setInitialized] = useState()
-    const [isProcessing, setIsProcessing] = useState()
-    const [loggedIn, setLoggedIn] = useState()
-    const setIsLoading = useState()
     const [error, setError] = useState()
     const form = useState({
         username: "",
@@ -18,6 +15,11 @@ export const AuthContextProvider = ({children}) => {
         password: "", 
         confirmedPassword: "",
     })
+    const [initialized, setInitialized] = useState()
+    const [isProcessing, setIsProcessing] = useState()
+    const [loggedIn, setLoggedIn] = useState()
+    const setIsLoading = useState()
+    const [user, setUser] = useState()
 
 
     useEffect(() => {
@@ -69,6 +71,7 @@ export const AuthContextProvider = ({children}) => {
             apiClient.setToken(data.token)
             setIsLoading(false)
             setLoggedIn(true)
+            Navigate("/activity")
         }
     }
 
@@ -100,6 +103,7 @@ export const AuthContextProvider = ({children}) => {
             apiClient.setToken(data.token)
             setIsLoading(false)
             setLoggedIn(true)
+            Navigate("/activity")
         }
     }
 
@@ -108,10 +112,12 @@ export const AuthContextProvider = ({children}) => {
     async function logoutUser() {
         await apiClient.logout()
         setLoggedIn(false)
+        Navigate("/")
     }
 
 
     const authValue = {user, setUser, initialized, setInitialized, isProcessing, setIsProcessing, error, setError, loggedIn, setLoggedIn}
+
 
     return (
         <AuthContext.Provider value = {authValue}>
@@ -119,5 +125,6 @@ export const AuthContextProvider = ({children}) => {
         </AuthContext.Provider>
     )
 }
+
 
 export const useAuthContext = () => useContext(AuthContext)

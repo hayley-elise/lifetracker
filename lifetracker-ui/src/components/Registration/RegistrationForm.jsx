@@ -1,13 +1,11 @@
-import * as React from "react"
 import "./RegForm.css"
-import {useState} from "react"
-import {useNavigate, Link} from "react-router-dom"
-import axios from "axios"
+import React, {useState} from "react"
+import {Link} from "react-router-dom"
+import {useAuthContext} from "../../../contexts/auth"
 
-export default function RegistrationForm({setAppState}) {
-    const navigate = useNavigate()
-    const [isLoading, setIsLoading] = useState(false)
-    const [errors, setErrors] = useState({})
+
+export default function RegistrationForm() {
+    const [errors, setErrors] = useState()
     const [form, setForm] = useState({
         username: "",
         firstName: "", 
@@ -16,9 +14,9 @@ export default function RegistrationForm({setAppState}) {
         password: "", 
         confirmedPassword: "",
     })
+    const isLoading = useState()
     
 
-    // error handling
     const handleOnInputChange = (event) => {
         if (event.target.name === "password") {
             if (form.confirmedPassword && form.confirmedPassword !== event.target.value) {
@@ -45,48 +43,11 @@ export default function RegistrationForm({setAppState}) {
         }
 
         setForm((f) => ({...f, [event.target.name]: event.target.value}))
-
     }
 
 
-    // sign-up user
-    const signupUser = async () => {
-        setIsLoading(true)
-        setErrors((e) => ({...e, form: null}))
-
-        if (form.confirmedPassword !== form.password) {
-            setErrors((e) => ({...e, confirmedPassword: "Passwords don't match..."}))
-            setIsLoading(false)
-            return
-            } else {
-                setErrors((e) => ({...e, confirmedPassword: null}))
-            }   
-
-        try {
-            const res = await axios.post(`http://localhost:3001/auth/register`, {
-                username: form.username,
-                firstName: form.firstName,
-                lastName: form.lastName,
-                email: form.email,
-                password: form.password,
-            })
-
-            if (res?.data?.user) {
-                setAppState(res.data)
-                setIsLoading(false)
-                navigate("/activity")
-            } else {
-                setErrors((e) => ({...e, form: "Something went wrong with the registration; please try again."}))
-                setIsLoading(false)
-            }
-        } catch (err) {
-            console.log(err)
-            const message = err?.response?.data?.error?.message
-            setErrors((e) => ({...e, form: message ? String(message) : String(err)}))
-            setIsLoading(false)
-        }
-
-    }
+    // signup user
+    async function signupUser() {useAuthContext()}
     
 
     return (
@@ -132,6 +93,7 @@ export default function RegistrationForm({setAppState}) {
             <br/>
 
             {/* Email */}
+            {errors.email && <span className = "error"> {errors.email} </span>}
             <label htmlFor = "email"> Email </label>
             <input 
                 className = "form-input" 
@@ -141,11 +103,11 @@ export default function RegistrationForm({setAppState}) {
                 onChange = {handleOnInputChange}
                 placeholder = "MJ@hehe.com"
             /> 
-            {errors.email && <span className = "error"> {errors.email} </span>}
 
             <br/>
 
             {/* Password */}
+            {errors.password && <span className = "error"> {errors.password} </span>}
             <label htmlFor = "password"> Password </label>
             <input 
                 className = "form-input" 
@@ -154,11 +116,11 @@ export default function RegistrationForm({setAppState}) {
                 value = {form.password} 
                 onChange = {handleOnInputChange}
             />
-            {errors.password && <span className = "error"> {errors.password} </span>}
 
             <br/>
 
             {/* Password Confirmation */}
+            {errors.confirmedPassword && <span className = "error"> {errors.confirmedPassword} </span>}
             <label htmlFor = "confirmedPassword"> Confirm Password </label>
             <input 
                 className = "form-input" 
@@ -167,12 +129,11 @@ export default function RegistrationForm({setAppState}) {
                 value = {form.confirmedPassword} 
                 onChange = {handleOnInputChange}
             />
-            {errors.confirmedPassword && <span className = "error"> {errors.confirmedPassword} </span>}
 
             <br/>
 
             {/* Sign-up Button */}
-            <button className = "submit-registration" onClick = {signupUser}> Create Account! </button>
+            <button className = "submit-registration" disabled = {isLoading} onClick = {signupUser}> {isLoading ? "Loading..." : "Create Account!"} </button>
 
             <br/>
 
