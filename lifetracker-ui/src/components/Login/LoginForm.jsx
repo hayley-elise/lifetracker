@@ -1,55 +1,40 @@
-import * as React from "react"
 import "./LoginForm.css"
-import {useState} from "react"
-import {Link, useNavigate} from "react-router-dom"
-import axios from "axios"
+import React, {useState} from "react"
+import {Link} from "react-router-dom"
+import {useAuthContext} from "../../../contexts/auth"
+
 
 export default function LoginForm() {
-    const navigate = useNavigate()
-    const [isLoading, setIsLoading] = useState(false)
-    const [errors, setErrors] = useState({})
+    const [errors, setErrors] = useState()
     const [form, setForm] = useState({
-        username: "",
+        email: "", 
         password: "",
     })
+    const isLoading = useState()
 
 
-    // error handling
     const handleOnInputChange = (event) => {
-        setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
+        if (event.target.name === "email") {
+          if (event.target.value.indexOf("@") === -1) {
+            setErrors((e) => ({...e, email: "Please enter a valid email."}))
+          } else {
+            setErrors((e) => ({...e, email: null}))
+          }
+        }
+    
+        setForm((f) => ({...f, [event.target.name]: event.target.value}))
     }
 
 
     // submit login
-    const loginUser = async (e) => {
-        e.preventDefault()
-        setIsLoading(true)
-        setErrors((e) => ({...e, form: null}))
-
-        try {
-            const res = await axios.post(`http://localhost:3001/auth/login`, form)
-
-            if (res?.data) {
-                setAppState(res.data)
-                setIsLoading(false)
-                navigate("/activity")
-            } else {
-                setErrors((e) => ({...e, form: "Invalid username/password."}))
-                setIsLoading(false)
-            }
-        } catch (err) {
-            const message = err?.response?.data?.error?.message
-            setErrors((e) => ({...e, form: message ? String(message) : String(err)}))
-            setIsLoading(false)
-        }
-
-    }
+    async function loginUser() {useAuthContext()}
   
 
     return (
         <div className = "login-form">
 
             {/* Email */}
+            {errors.email && <span className = "error"> {errors.email} </span>}
             <label htmlFor = "email"> Email </label>
             <input 
                 className = "form-input" 
@@ -58,12 +43,12 @@ export default function LoginForm() {
                 value = {form.email} 
                 onChange = {handleOnInputChange}
                 placeholder = "MJ@hehe.com"
-            /> 
-            {errors.email && <span className = "error"> {errors.email} </span>}
+            />
 
             <br/>
 
             {/* Password */}
+            {errors.password && <span className = "error"> {errors.password} </span>}
             <label htmlFor = "password"> Password </label>
             <input 
                 className = "form-input" 
@@ -72,12 +57,11 @@ export default function LoginForm() {
                 value = {form.password} 
                 onChange = {handleOnInputChange}
             />
-            {errors.password && <span className = "error"> {errors.password} </span>}
 
             <br/>
 
-            {/* Sign-up Button */}
-            <button className = "submit-login" onClick = {loginUser}> Log In! </button>
+            {/* Login Button */}
+            <button className = "submit-login" disabled = {isLoading} onClick = {loginUser}> {isLoading ? "Loading..." : "Log In"} </button>
 
             <br/>
 
