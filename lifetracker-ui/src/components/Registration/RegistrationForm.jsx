@@ -1,11 +1,11 @@
 import * as React from "react"
 import "./RegForm.css"
 import {useState} from "react"
-import {useNavigate, Link} from "react-router-dom"
-import axios from "axios"
+import {Link} from "react-router-dom"
+import {useAuthContext} from "../../../contexts/auth"
 
-export default function RegistrationForm({setAppState}) {
-    const navigate = useNavigate()
+export default function RegistrationForm() {
+    const [signupUser] = useAuthContext()
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState({})
     const [form, setForm] = useState({
@@ -47,47 +47,6 @@ export default function RegistrationForm({setAppState}) {
         setForm((f) => ({...f, [event.target.name]: event.target.value}))
 
     }
-
-
-    // sign-up user
-    const signupUser = async () => {
-        setIsLoading(true)
-        setErrors((e) => ({...e, form: null}))
-
-        if (form.confirmedPassword !== form.password) {
-            setErrors((e) => ({...e, confirmedPassword: "Passwords don't match..."}))
-            setIsLoading(false)
-            return
-            } else {
-                setErrors((e) => ({...e, confirmedPassword: null}))
-            }   
-
-        try {
-            const res = await axios.post(`http://localhost:3001/auth/register`, {
-                username: form.username,
-                firstName: form.firstName,
-                lastName: form.lastName,
-                email: form.email,
-                password: form.password,
-            })
-
-            if (res?.data?.user) {
-                setAppState(res.data)
-                setIsLoading(false)
-                navigate("/activity")
-            } else {
-                setErrors((e) => ({...e, form: "Something went wrong with the registration; please try again."}))
-                setIsLoading(false)
-            }
-        } catch (err) {
-            console.log(err)
-            const message = err?.response?.data?.error?.message
-            setErrors((e) => ({...e, form: message ? String(message) : String(err)}))
-            setIsLoading(false)
-        }
-
-    }
-    
 
     return (
         <div className = "registration-form">
@@ -172,7 +131,7 @@ export default function RegistrationForm({setAppState}) {
             <br/>
 
             {/* Sign-up Button */}
-            <button className = "submit-registration" onClick = {signupUser}> Create Account! </button>
+            <button className = "submit-registration" disabled = {isLoading} onClick = {signupUser}> {isLoading ? "Loading..." : "Create Account!"} </button>
 
             <br/>
 

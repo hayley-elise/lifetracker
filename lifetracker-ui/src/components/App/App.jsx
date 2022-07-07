@@ -7,10 +7,19 @@ import LoginPage from "../Login/LoginPage"
 import RegistrationPage from "../Registration/RegistrationPage"
 import ActivityPage from "../Activity/ActivityPage"
 import NutritionPage from "../Nutrition/NutritionPage"
-import AccessForbidden from "../AccessForbidden/AccessForbidden"
 import NotFound from "../NotFound/NotFound"
+import {AuthContextProvider} from "../../../contexts/auth"
 
-export default function App() {
+export default function AppContainer() {
+  return (
+    <AuthContextProvider>
+      <App/>
+    </AuthContextProvider>
+  )
+}
+
+
+function App() {
 
   return (
     <div className = "app">
@@ -20,15 +29,10 @@ export default function App() {
 
           <Routes>
             <Route path = "/" element = {<LandingPage/>} />
-
-            <Route path = "/register" element = {<RegistrationPage/>} />
-            <Route path = "/login" element = {<LoginPage/>} />
-            
-            {/* access granted only if user is logged in, otherwise render AccessForbidden */}
+            <Route path = "/login" element = {<LoginPage/>}/>
+            <Route path = "/register" element = {<RegistrationPage/>}/>
             <Route path = "/activity" element = {<ActivityPage/>}/>
             <Route path = "/nutrition/*" element = {<NutritionPage/>}/>
-            {/* ~~~~~~ */}
-
             <Route path = "*" element = {<NotFound/>}/>
           </Routes>
 

@@ -1,32 +1,55 @@
 import axios from "axios"
-import {API_BASE_URL} from "../constants/constants"
+import API_BASE_URL from "../constants"
 
 class ApiClient {
     constructor(remoteHostUrl) {
         this.remoteHostUrl = remoteHostUrl
         this.token = null
+        this.tokenName = "lifetracker_token"
     }
 
     static setToken(token) {
-        const request = axios.request(token)
-        return request
+        this.token = token
+        localStorage.setItem(this.tokenName, token)
+    }
+
+    async request({endpoint, method = "GET", data = {}}) {
+        const url = `${this.remoteHostUrl}/${endpoint}`
+
+        const headers = {
+            "Content-Type" : "application/json"
+        }
+
+        if (this.token) {
+            headers["Authorization"] = `Bearer ${this.token}`
+        }
+
+        try {
+            const res = await axios({url, method, data, headers})
+            return {data: res.data, error: null}
+        } catch (error) {
+            const message = error?.response?.data?.error?.message
+            return {data: null, error: message || String(error)}
+        }
     }
     
-    static login(endpoint) {
-        const loginRequest = new Request(API_BASE_URL)
-        axios.post(loginRequest, endpoint)
+    async login(credentials) {
+        return await this.request({endpoint: `auth/login`, method: "POST", data: credentials})
     }
-    
-    static signup(endpoint) {
-        const signupRequest = new Request(API_BASE_URL)
-        axios.post(signupRequest, endpoint)
+
+    async signup(credentials) {
+        return await this.request({endpoint: `auth/register`, method: "POST", data: credentials})
     }
-    
-   static fetchUserFromToken(endpoint) {
-        const userRequest = new Request(API_BASE_URL)
-        axios.post(userRequest, endpoint)
+
+    async fetchUserFromToken() {
+        return await this.request({endpoint: `auth/me`, method: "GET"})
+    }
+
+    async logout() {
+        this.setToken(null)
+        localStorage.setItem(this.tokenName, "")
     }
 }
 
 
-module.exports = ApiClient
+export default new ApiClient(API_BASE_URL)
