@@ -4,7 +4,9 @@ import {Link} from "react-router-dom"
 import NavLinks from "../Navbar/NavLinks.jsx"
 import Codepath_logo from "../../assets/Codepath.svg"
 
+
 export default function Navbar() {
+
     
     return (
         <nav className = "Navbar">
@@ -21,5 +23,4 @@ export default function Navbar() {
             </div>
         </nav>
     )
-
 }
