@@ -18,7 +18,7 @@ export default function NavLinks() {
             <Link to = "/sleep"> Sleep </Link>
             {loggedIn ? <button className = "logout-button" onClick = {logoutUser}> Logout </button> : 
                 <> <Link to = "/login"> Login </Link> 
-                <Link to="/register"> Register </Link> </>}
+                <Link to = "/register"> Register </Link> </>}
         </div>
       )
 }
