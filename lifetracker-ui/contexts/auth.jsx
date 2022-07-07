@@ -109,15 +109,8 @@ export const AuthContextProvider = ({children}) => {
 
 
     // logout user
-    async function logoutUser(e) {
-        setError((e) => ({...e, form: null}))
+    async function logoutUser() {
         await apiClient.logout()
-        if (error) {
-            setError((e) => ({...e, form: error}))
-            const message = error?.response?.data?.error?.message
-            setError((e) => ({...e, form: message ? String(message) : String(error)}))
-            setIsLoading(false)
-        }
         setLoggedIn(false)
         Navigate("/")
     }
