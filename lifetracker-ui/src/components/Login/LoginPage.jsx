@@ -5,7 +5,7 @@ import {useAuthContext} from "../../../contexts/auth"
 
 
 export default function LoginPage() {
-  const loggedIn = useAuthContext()
+  const {loggedIn} = useAuthContext()
 
   return (
     <div className = "login-page">

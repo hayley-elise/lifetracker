@@ -22,7 +22,7 @@ export default function AppContainer() {
 
 
 function App() {
-  const loggedIn = useAuthContext()
+  const {loggedIn} = useAuthContext()
 
   
   return (

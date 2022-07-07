@@ -5,7 +5,7 @@ import {useAuthContext} from "../../../contexts/auth"
 
 
 export default function RegistrationPage() {
-  const loggedIn = useAuthContext()
+  const {loggedIn} = useAuthContext()
 
 
   return (

@@ -5,7 +5,7 @@ import {useAuthContext} from "../../../contexts/auth"
 
 
 export default function NavLinks() {
-    const loggedIn = useAuthContext()
+    const {loggedIn} = useAuthContext()
 
     async function logoutUser() {useAuthContext()}
 
