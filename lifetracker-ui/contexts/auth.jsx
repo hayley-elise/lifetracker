@@ -1,14 +1,19 @@
-import * as React from "react"
-import {useEffect} from "react"
+// import {createContext, useState, useContext, useEffect} from "react"
 
+// const AuthContext = createContext(null)
 
-const AuthContext = React.createContext()
+// export const AuthContextProvider = ({children}) => {
+//     const [user, setUser] = useState()
+//     const [initialized, setInitialized] = useState()
+//     const [isProcessing, setIsProcessing] = useState()
+//     const [error, setError] = useState()
+//     const authValue = {user, setUser, initialized, setInitialized, isProcessing, setIsProcessing, error, setError}
 
-export default function AuthContextProvider(prop) {
-    // for later
+//     return (
+//         <AuthContext.Provider value = {authValue}>
+//             <>{children}</>
+//         </AuthContext.Provider>
+//     )
+// }
 
-    return (
-        prop
-    )
-
-}
+// export const useAuthContext = () => useContext(AuthContext)
