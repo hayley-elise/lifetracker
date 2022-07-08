@@ -4,8 +4,8 @@ import {useAuthContext} from "../../../../contexts/auth"
 
 
 export default function NavLinks() {
-    const {loggedIn} = useAuthContext()
-    async function logoutUser() {useAuthContext()}
+    const {loggedIn} = useAuthContext()      // checks if user is logged in using auth context
+    const {logoutUser} = useAuthContext()   // logout user with auth context
 
     return (
         <div className = "nav-links">

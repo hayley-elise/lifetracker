@@ -4,7 +4,6 @@ const morgan = require("morgan")
 const {BadRequestError, NotFoundError} = require("./utils/errors")
 const authRoutes = require("./routes/auth")
 const security = require("./middleware/security")
-
 const app = express()
 
 
@@ -29,7 +28,7 @@ app.use((err, req, res, next) => {
     const message = err.message
 
     return res.status(status).json({
-        error: {message, status},
+        error: {message, status}
     })
 })
 

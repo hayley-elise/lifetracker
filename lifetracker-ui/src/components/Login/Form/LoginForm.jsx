@@ -5,15 +5,15 @@ import {useAuthContext} from "../../../../contexts/auth"
 
 
 export default function LoginForm() {
-    const [errors, setErrors] = useState()
+    const [errors, setErrors] = useState({})
     const [form, setForm] = useState({
         email: "",  password: ""
     })
-    const isLoading = useState()
 
 
     // login user with auth context
-    async function loginUser() {useAuthContext()}
+    const {loginUser} = useAuthContext()
+
 
     // error checking
     const handleOnInputChange = (event) => {
@@ -33,35 +33,33 @@ export default function LoginForm() {
         <div className = "login-form">
 
             {/* Email */}
-            {errors.email && <span className = "error"> {errors.email} </span>}
             <label htmlFor = "email"> Email </label>
+            <br/>
             <input 
                 className = "form-input"   name = "email"   type = "email" 
                 value = {form.email}   onChange = {handleOnInputChange}   placeholder = "MJ@hehe.com"
-            />
+            /> {errors.email && <span className = "error"> {errors.email} </span>}
 
             <br/>
 
             {/* Password */}
-            {errors.password && <span className = "error"> {errors.password} </span>}
             <label htmlFor = "password"> Password </label>
+            <br/>
             <input 
                 className = "form-input"   name = "password"   type = "password" 
                 value = {form.password}   onChange = {handleOnInputChange}   placeholder = "shhhhh... it's a secret..."
-            />
+            /> {errors.password && <span className = "error"> {errors.password} </span>}
 
-            <br/>
+            <br/><br/>
 
             {/* Login Button */}
-            <button   className = "submit-login"   disabled = {isLoading}   onClick = {loginUser}>  
-                {isLoading ? "Loading..." : "Log In"}  
-            </button>
+            <button   className = "submit-login"  onClick = {loginUser}>  Log In  </button>
 
-            <br/>
+            <br/><br/>
 
             {/* Link to Registration page */}
             <div className = "footer">
-                <p>  Don't have an account? Sign up  <Link to = "/register"> here! </Link>  </p>
+                <p>  Don't have an account yet? Sign up  <Link to = "/register"> here! </Link>  </p>
             </div>
 
         </div>
