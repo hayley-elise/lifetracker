@@ -51,8 +51,9 @@ export const AuthContextProvider = ({children}) => {
     }
 
     // login user
-    // function works, except:
-    // doesn't navigate to activity page
+    // current issues:
+    // doesn't navigate to activity page, and
+    // despite displaying console log, and regardless of not loading activity, still doesn't give access to other pages
     const loginUser = async () => {
         setError((e) => ({...e, form: null}))
         const {data, error} = await apiClient.login({email: form.email, password: form.password})
@@ -73,9 +74,10 @@ export const AuthContextProvider = ({children}) => {
     }
 
     // signup user
-    // function works, except:
-    // doesn't navigate to activity page, and
-    // user able to sign up with the same username/email; functional in the backend
+    // current issues:
+    // doesn't navigate to activity page,
+    // user able to sign up with the same username/email (functional in the backend), and
+    // despite displaying console log, and regardless of not loading activity, still doesn't give access to other pages
     const signupUser = async () => {
         setError((e) => ({...e, form: null}))
 
@@ -104,7 +106,7 @@ export const AuthContextProvider = ({children}) => {
     }
 
     // logout user
-    // function works, except:
+    // current issues:
     // loading/reloading the page automatically logs me in, giving me access to the other pages. and,
     // if I log out while not on the landing page, "Access Forbidden" renders instead of navigating back to landing 
     const logoutUser = async () => {
