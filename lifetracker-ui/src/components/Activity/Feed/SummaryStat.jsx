@@ -1,5 +1,3 @@
-import * as React from "react"
-
 export default function SummaryStat({stat, label, substat}) {
 
     return (
@@ -8,6 +6,5 @@ export default function SummaryStat({stat, label, substat}) {
             <p className = "stat-label"> {label.toString()} </p>
             <p className = "secondary-statistic"> {substat} </p>
         </div>
-    )
-    
+    )    
 }

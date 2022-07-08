@@ -1,7 +1,7 @@
-import * as React from "react"
 import ActivityFeed from "./Feed/ActivityFeed"
-import ActivityContextProvider from "../../../contexts/activity"
+// import ActivityContextProvider from "../../../contexts/activity"
 import Loading from "../Loading/Loading"
+
 
 export default function ActivityPage() {
     
@@ -15,5 +15,4 @@ export default function ActivityPage() {
           <ActivityFeed/>
         </div>
       )
-
 }

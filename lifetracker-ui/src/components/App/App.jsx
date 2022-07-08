@@ -1,11 +1,13 @@
 import "./App.css"
 import * as React from "react"
-import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom"
-import Navbar from "../Navbar/Navbar"
+import {BrowserRouter, Routes, Route} from "react-router-dom"
+import Navbar from "../Navbar/Bar/Navbar"
 import LandingPage from "../Landing/LandingPage"
-import LoginPage from "../Login/LoginPage"
-import RegistrationPage from "../Registration/RegistrationPage"
+import LoginPage from "../Login/Page/LoginPage"
+import RegistrationPage from "../Registration/Page/RegistrationPage"
 import ActivityPage from "../Activity/ActivityPage"
+import Exercise from "../Activity/Exercise/Exercise"
+import Sleep from "../Activity/Sleep/Sleep"
 import NutritionPage from "../Nutrition/NutritionPage"
 import AccessForbidden from "../AccessForbidden/AccessForbidden"
 import NotFound from "../NotFound/NotFound"
@@ -20,11 +22,9 @@ export default function AppContainer() {
   )
 }
 
-
 function App() {
   const {loggedIn} = useAuthContext()
 
-  
   return (
     <div className = "app">
       <React.Fragment>
@@ -33,9 +33,12 @@ function App() {
             <Navbar/>
             <Routes>
               <Route path = "/" element = {<LandingPage/>}/>
-              <Route path = "/register" element = {loggedIn ? <Navigate to = "/activity"/> : <RegistrationPage/>}/>
-              <Route path = "/login" element = {loggedIn ? <Navigate to = "/activity"/> : <LoginPage/>}/>
+              <Route path = "/register" element = {<RegistrationPage/>}/>
+              <Route path = "/login" element = {<LoginPage/>}/>
+              {/* check if user is logged in */}
               <Route path = "/activity" element = {!loggedIn ? <AccessForbidden/> : <ActivityPage/>}/>
+              <Route path = "/exercise" element = {!loggedIn ? <AccessForbidden/> : <Exercise/>}/>
+              <Route path = "/sleep" element = {!loggedIn ? <AccessForbidden/> : <Sleep/>}/>
               <Route path = "/nutrition/*" element = {!loggedIn ? <AccessForbidden/> : <NutritionPage/>}/>
               <Route path = "*" element = {<NotFound/>}/>
             </Routes>

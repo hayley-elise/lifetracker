@@ -35,7 +35,6 @@ export const AuthContextProvider = ({children}) => {
         setInitialized(true)
     }, [])
 
-
     // fetch user data from token
     async function fetchUserFromToken() {
         const {data, error} = await apiClient.fetchUserFromToken()
@@ -50,7 +49,6 @@ export const AuthContextProvider = ({children}) => {
             setError(null)
         }
     }
-
 
     // login user
     async function loginUser(e) {
@@ -74,7 +72,6 @@ export const AuthContextProvider = ({children}) => {
             Navigate("/activity")
         }
     }
-
 
     // signup user
     async function signupUser(e) {
@@ -107,14 +104,12 @@ export const AuthContextProvider = ({children}) => {
         }
     }
 
-
     // logout user
     async function logoutUser() {
         await apiClient.logout()
         setLoggedIn(false)
         Navigate("/")
     }
-
 
     const authValue = {user, setUser, initialized, setInitialized, isProcessing, setIsProcessing, error, setError, loggedIn, setLoggedIn}
 

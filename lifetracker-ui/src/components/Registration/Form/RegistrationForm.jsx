@@ -1,22 +1,21 @@
-import "./RegForm.css"
-import React, {useState} from "react"
+import "./RegisterForm.css"
+import {useState} from "react"
 import {Link} from "react-router-dom"
-import {useAuthContext} from "../../../contexts/auth"
+import {useAuthContext} from "../../../../contexts/auth"
 
 
 export default function RegistrationForm() {
     const [errors, setErrors] = useState()
     const [form, setForm] = useState({
-        username: "",
-        firstName: "", 
-        lastName: "", 
-        email: "", 
-        password: "", 
-        confirmedPassword: "",
+        username: "",  firstName: "",  lastName: "",  email: "",  password: "",  confirmedPassword: ""
     })
     const isLoading = useState()
-    
 
+
+    // sign up user with auth context
+    async function signupUser() {useAuthContext()}
+    
+    // error checking
     const handleOnInputChange = (event) => {
         if (event.target.name === "password") {
             if (form.confirmedPassword && form.confirmedPassword !== event.target.value) {
@@ -44,10 +43,6 @@ export default function RegistrationForm() {
 
         setForm((f) => ({...f, [event.target.name]: event.target.value}))
     }
-
-
-    // signup user
-    async function signupUser() {useAuthContext()}
     
 
     return (
@@ -56,12 +51,8 @@ export default function RegistrationForm() {
             {/* Username */}
             <label htmlFor = "name"> Username </label>
             <input 
-                className = "form-input" 
-                name = "username" 
-                type = "text" 
-                value = {form.username} 
-                onChange = {handleOnInputChange}
-                placeholder = "KingOfPop69"
+                className = "form-input"   name = "username"   type = "text" 
+                value = {form.username}   onChange = {handleOnInputChange}   placeholder = "KingOfPop69"
             />
 
             <br/>
@@ -69,12 +60,8 @@ export default function RegistrationForm() {
             {/* First Name */}
             <label htmlFor = "name"> First Name </label>
             <input 
-                className = "form-input" 
-                name = "firstName" 
-                type = "text" 
-                value = {form.firstName} 
-                onChange = {handleOnInputChange}
-                placeholder = "Michael"
+                className = "form-input"   name = "firstName"   type = "text" 
+                value = {form.firstName}   onChange = {handleOnInputChange}   placeholder = "Michael"
             /> 
 
             <br/>
@@ -82,12 +69,8 @@ export default function RegistrationForm() {
             {/* Last Name */}
             <label htmlFor = "name"> Last Name </label>
             <input 
-                className = "form-input" 
-                name = "lastName" 
-                type = "text" 
-                value = {form.lastName} 
-                onChange = {handleOnInputChange}
-                placeholder = "Jackson"
+                className = "form-input"   name = "lastName"    type = "text" 
+                value = {form.lastName}   onChange = {handleOnInputChange}   placeholder = "Jackson"
             />
 
             <br/>
@@ -96,12 +79,8 @@ export default function RegistrationForm() {
             {errors.email && <span className = "error"> {errors.email} </span>}
             <label htmlFor = "email"> Email </label>
             <input 
-                className = "form-input" 
-                name = "email" 
-                type = "email" 
-                value = {form.email} 
-                onChange = {handleOnInputChange}
-                placeholder = "MJ@hehe.com"
+                className = "form-input"   name = "email"   type = "email" 
+                value = {form.email}   onChange = {handleOnInputChange}   placeholder = "MJ@hehe.com"
             /> 
 
             <br/>
@@ -110,11 +89,8 @@ export default function RegistrationForm() {
             {errors.password && <span className = "error"> {errors.password} </span>}
             <label htmlFor = "password"> Password </label>
             <input 
-                className = "form-input" 
-                name = "password" 
-                type = "password" 
-                value = {form.password} 
-                onChange = {handleOnInputChange}
+                className = "form-input"   name = "password"   type = "password" 
+                value = {form.password}   onChange = {handleOnInputChange}   placeholder = "shhhhh... it's a secret..."
             />
 
             <br/>
@@ -123,17 +99,16 @@ export default function RegistrationForm() {
             {errors.confirmedPassword && <span className = "error"> {errors.confirmedPassword} </span>}
             <label htmlFor = "confirmedPassword"> Confirm Password </label>
             <input 
-                className = "form-input" 
-                name = "confirmedPassword" 
-                type = "password" 
-                value = {form.confirmedPassword} 
-                onChange = {handleOnInputChange}
+                className = "form-input"   name = "confirmedPassword"   type = "password" 
+                value = {form.confirmedPassword}   onChange = {handleOnInputChange}
             />
 
             <br/>
 
             {/* Sign-up Button */}
-            <button className = "submit-registration" disabled = {isLoading} onClick = {signupUser}> {isLoading ? "Loading..." : "Create Account!"} </button>
+            <button   className = "submit-registration"   disabled = {isLoading}   onClick = {signupUser}>   
+                {isLoading ? "Loading..." : "Create Account!"}   
+            </button>
 
             <br/>
 
@@ -144,5 +119,4 @@ export default function RegistrationForm() {
 
         </div>
   )
-
 }
