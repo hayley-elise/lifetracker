@@ -46,8 +46,8 @@ class ApiClient {
     }
 
     async logout() {
-        this.setToken(null)
-        localStorage.setItem(this.tokenName, "")
+        this.token = null
+        localStorage.removeItem("lifetracker_token")
     }
 }
 
