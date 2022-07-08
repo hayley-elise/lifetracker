@@ -27,7 +27,7 @@ class User {
     // ~~~~~~~~~~~
         // throws error if field is missing
         requiredFields.forEach((field) => {
-            if (!credentials.hasOwnProperty(field)) {
+            if (!credentials.hasOwnProperty(field) || credentials[field] === '') {
                 throw new BadRequestError(`Field required: ${field}`)
             }
         })
@@ -59,7 +59,7 @@ class User {
     // ~~~~~~~~~~~
         // throws error if field is missing
         requiredFields.forEach((field) => {
-            if (!credentials.hasOwnProperty(field)) {
+            if (!credentials.hasOwnProperty(field) || credentials[field] === '') {
                 throw new BadRequestError(`Field required: ${field}`)
             }
         })
