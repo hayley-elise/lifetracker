@@ -1,6 +1,6 @@
 import {createContext, useState, useContext, useEffect} from "react"
 import apiClient from "../services/apiClient"
-import {Navigate} from "react-router-dom"
+// import {Navigate} from "react-router-dom"
 
 
 const AuthContext = createContext(null)
@@ -30,6 +30,7 @@ export const AuthContextProvider = ({children}) => {
             setError(null)
             fetchUserFromToken()
         }
+        setLoggedIn(false)
         setIsProcessing(false)
         setInitialized(true)
     }, [])
@@ -52,8 +53,7 @@ export const AuthContextProvider = ({children}) => {
 
     // login user
     // current issues:
-    // doesn't navigate to activity page, and
-    // despite displaying console log, and regardless of not loading activity, still doesn't give access to other pages
+    // doesn't navigate to activity page
     const loginUser = async () => {
         setError((e) => ({...e, form: null}))
         const {data, error} = await apiClient.login({email: form.email, password: form.password})
@@ -67,17 +67,16 @@ export const AuthContextProvider = ({children}) => {
         if (data?.user) {
             setUser(data.user)
             apiClient.setToken(data.token)
-            setLoggedIn(true)
-            Navigate("/activity")
         }
+        setLoggedIn(true)
+        // Navigate("/activity")
         console.log("login successful")
     }
 
     // signup user
     // current issues:
-    // doesn't navigate to activity page,
-    // user able to sign up with the same username/email (functional in the backend), and
-    // despite displaying console log, and regardless of not loading activity, still doesn't give access to other pages
+    // doesn't navigate to activity page
+    // user able to sign up with the same username/email (functional in the backend)
     const signupUser = async () => {
         setError((e) => ({...e, form: null}))
 
@@ -99,20 +98,20 @@ export const AuthContextProvider = ({children}) => {
         if (data?.user) {
             setUser(data.user)
             apiClient.setToken(data.token)
-            setLoggedIn(true)
-            Navigate("/activity")
         }
+        // Navigate("/activity")
+        setLoggedIn(true)
         console.log("sign-up successful")
     }
 
     // logout user
     // current issues:
-    // loading/reloading the page automatically logs me in, giving me access to the other pages. and,
     // if I log out while not on the landing page, "Access Forbidden" renders instead of navigating back to landing 
     const logoutUser = async () => {
         await apiClient.logout()
         setLoggedIn(false)
-        Navigate("/")
+        setUser({})
+        // Navigate("/")
         console.log("logout successful")
     }
 
