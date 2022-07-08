@@ -6,7 +6,7 @@ import {Navigate} from "react-router-dom"
 const AuthContext = createContext(null)
 
 export const AuthContextProvider = ({children}) => {
-    const [error, setError] = useState()
+    const [error, setError] = useState({})
     const form = useState({
         username: "",
         firstName: "", 
@@ -15,10 +15,10 @@ export const AuthContextProvider = ({children}) => {
         password: "", 
         confirmedPassword: "",
     })
-    const [initialized, setInitialized] = useState()
-    const [isProcessing, setIsProcessing] = useState()
-    const [loggedIn, setLoggedIn] = useState()
-    const [user, setUser] = useState()
+    const [initialized, setInitialized] = useState({})
+    const [isProcessing, setIsProcessing] = useState({})
+    const [loggedIn, setLoggedIn] = useState({})
+    const [user, setUser] = useState({})
 
 
     useEffect(() => {
