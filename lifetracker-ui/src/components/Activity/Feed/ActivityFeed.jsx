@@ -12,8 +12,9 @@ export default function ActivityFeed({totalCaloriesPerDay = [], avgCaloriesPerCa
 
     return (
         <div className = "activity-feed">
+            <h1> Coming soon! </h1>
 
-            <div className="per-category">
+            {/* <div className="per-category">
                 <h4> Average Calories Per Category: </h4>
 
                 {avgCaloriesPerCategory.map((calories) => {
@@ -37,7 +38,7 @@ export default function ActivityFeed({totalCaloriesPerDay = [], avgCaloriesPerCa
                     />
                     })
                 }
-            </div>
+            </div> */}
         </div>
     )
 

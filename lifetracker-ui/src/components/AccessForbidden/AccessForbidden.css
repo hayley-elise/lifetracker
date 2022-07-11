@@ -1,0 +1,10 @@
+.access-forbidden {
+    /* text styling */
+    text-align: center;
+    /* background styling */
+    background: #2c4147;
+    /* center align */
+    margin: auto;
+    width: 50%;
+    padding: 110px;
+}
