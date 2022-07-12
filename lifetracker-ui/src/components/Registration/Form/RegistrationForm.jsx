@@ -50,57 +50,51 @@ export default function RegistrationForm() {
 
             {/* Username */}
             <label htmlFor = "name"> Username </label>
-            <br/>
             <input 
                 className = "form-input"   name = "username"   type = "text" 
-                value = {form.username}   onChange = {handleOnInputChange}   placeholder = "KingOfPop69"
+                value = {form.username}   onChange = {handleOnInputChange}
             /> {errors.username && <span className = "error"> {errors.username} </span>}
 
             <br/>
 
             {/* First Name */}
             <label htmlFor = "name"> First Name </label>
-            <br/>
             <input 
                 className = "form-input"   name = "firstName"   type = "text" 
-                value = {form.firstName}   onChange = {handleOnInputChange}   placeholder = "Michael"
+                value = {form.firstName}   onChange = {handleOnInputChange}
             /> {errors.firstName && <span className = "error"> {errors.firstName} </span>}
 
             <br/>
 
             {/* Last Name */}
             <label htmlFor = "name"> Last Name </label>
-            <br/>
             <input 
                 className = "form-input"   name = "lastName"    type = "text" 
-                value = {form.lastName}   onChange = {handleOnInputChange}   placeholder = "Jackson"
+                value = {form.lastName}   onChange = {handleOnInputChange}
             /> {errors.lastName && <span className = "error"> {errors.lastName} </span>}
 
             <br/>
 
             {/* Email */}
             <label htmlFor = "email"> Email </label>
-            <br/>
             <input 
                 className = "form-input"   name = "email"   type = "email" 
-                value = {form.email}   onChange = {handleOnInputChange}   placeholder = "MJ@hehe.com"
+                value = {form.email}   onChange = {handleOnInputChange}
             /> {errors.email && <span className = "error"> {errors.email} </span>}
 
             <br/>
 
             {/* Password */}
             <label htmlFor = "password"> Password </label>
-            <br/>
             <input 
                 className = "form-input"   name = "password"   type = "password" 
-                value = {form.password}   onChange = {handleOnInputChange}   placeholder = "shhhhh... it's a secret..."
+                value = {form.password}   onChange = {handleOnInputChange}
             /> {errors.password && <span className = "error"> {errors.password} </span>}
 
             <br/>
 
             {/* Password Confirmation */}
             <label htmlFor = "confirmedPassword"> Confirm Password </label>
-            <br/>
             <input 
                 className = "form-input"   name = "confirmedPassword"   type = "password" 
                 value = {form.confirmedPassword}   onChange = {handleOnInputChange}
@@ -111,7 +105,7 @@ export default function RegistrationForm() {
             {/* Sign-up Button */}
             <button   className = "submit-registration"  onClick = {signupUser}>   Sign Up!  </button>
 
-            <br/><br/>
+            <br/>
 
             {/* Link to Login page */}
             <div className = "footer">

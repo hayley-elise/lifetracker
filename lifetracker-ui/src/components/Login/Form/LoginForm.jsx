@@ -34,20 +34,18 @@ export default function LoginForm() {
 
             {/* Email */}
             <label htmlFor = "email"> Email </label>
-            <br/>
             <input 
                 className = "form-input"   name = "email"   type = "email" 
-                value = {form.email}   onChange = {handleOnInputChange}   placeholder = "MJ@hehe.com"
+                value = {form.email}   onChange = {handleOnInputChange}
             /> {errors.email && <span className = "error"> {errors.email} </span>}
 
             <br/>
 
             {/* Password */}
             <label htmlFor = "password"> Password </label>
-            <br/>
             <input 
                 className = "form-input"   name = "password"   type = "password" 
-                value = {form.password}   onChange = {handleOnInputChange}   placeholder = "shhhhh... it's a secret..."
+                value = {form.password}   onChange = {handleOnInputChange}
             /> {errors.password && <span className = "error"> {errors.password} </span>}
 
             <br/><br/>
@@ -55,7 +53,7 @@ export default function LoginForm() {
             {/* Login Button */}
             <button   className = "submit-login"  onClick = {loginUser}>  Log In  </button>
 
-            <br/><br/>
+            <br/>
 
             {/* Link to Registration page */}
             <div className = "footer">

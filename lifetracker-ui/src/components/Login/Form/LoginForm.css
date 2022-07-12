@@ -1,0 +1,16 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submit-login {
+    padding: 5px;
+    background-color: silver;
+    font-size: 18px;
+}
+
+.submit-login:hover {
+    background-color: #00c98e;
+    font-weight: bold;
+}

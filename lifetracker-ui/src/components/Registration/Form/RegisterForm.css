@@ -1,0 +1,38 @@
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    padding-top: 2px;
+    padding-bottom: 5px;
+    color: #00c98e;
+    text-align: center;
+}
+
+.form-input {
+    padding-top: 1%;
+    background-color: silver;
+    text-align: center;
+}
+
+.footer {
+    font-size: 20px;
+}
+
+.footer a {
+    color: #00c98e;
+    font-weight: bold;
+}
+
+.submit-registration {
+    padding: 5px;
+    background-color: silver;
+    font-size: 18px;
+}
+
+.submit-registration:hover {
+    background-color: #00c98e;
+    font-weight: bold;
+}
