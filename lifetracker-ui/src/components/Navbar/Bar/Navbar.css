@@ -1,28 +1,9 @@
-.Navbar, .content {
-    width: auto;
-    background: #2c4147;
-    margin: 10px;
-    height: 100px;
+.content {
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    position: sticky;
-    flex: 1;
-    padding: 10px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.nav-links a {
-    margin: 10px;
-    text-decoration: none;
-}
-
-.nav-links a:hover {
-    color: aquamarine;
 }
 
 .logo {
-    margin-right: 130px;
-    width: 150px;
+    width: 100px;   
 }

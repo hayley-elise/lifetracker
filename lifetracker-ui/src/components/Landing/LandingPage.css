@@ -1,26 +1,10 @@
-.landing-page {
-    max-width: 100vw;
-    height: auto;
-    position: relative;
-    min-height: 100px;
-    overflow: hidden;
-    background: #2c4147;
-}
-
 .landing-page, .hero {
-    width: 100%;
     display: flex;
     flex-direction: column;
-    position: relative;
     align-items: center;
-    justify-content: center;
 }
 
 .cta {
-    position: absolute;
-    font-size: 76px;
-    font-weight: bolder;
-    position: relative;
-    z-index: 10;
-    color: white;
+    font-size: 75px;
+    font-weight: bold;
 }

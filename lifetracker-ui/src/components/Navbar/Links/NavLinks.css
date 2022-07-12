@@ -1,0 +1,18 @@
+.nav-links {
+    display: flex;
+    margin-right: 45%;
+    width: 300px;
+}
+
+.nav-links a {
+    padding: 10%;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    color: #00c98e;
+}
+
+.nav-links a:active {
+    color: #00c98e;
+}
