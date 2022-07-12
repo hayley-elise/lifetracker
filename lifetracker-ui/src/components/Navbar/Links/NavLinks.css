@@ -16,3 +16,17 @@
 .nav-links a:active {
     color: #00c98e;
 }
+
+.logout-button {
+    margin-bottom: -6px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.logout-button:hover {
+    color: #00c98e;
+    cursor: pointer;
+}

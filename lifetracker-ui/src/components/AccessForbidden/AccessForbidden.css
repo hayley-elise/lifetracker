@@ -3,3 +3,11 @@
     flex-direction: column;
     align-items: center;
 }
+
+.access-forbidden a {
+    font-weight: bold;
+}
+
+.access-forbidden a:hover {
+    color: #00c98e;
+}
